@@ -1,0 +1,18 @@
+{
+    "name": "castbar",
+    "rootNamespace": "",
+    "references": [
+        "Unity.TextMeshPro",
+        "trickedoutui",
+        "timer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

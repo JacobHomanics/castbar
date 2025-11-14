@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using JacobHomanics.Timer;
 using UnityEngine.Events;
 
 namespace JacobHomanics.Timer.Extensions
@@ -24,8 +23,6 @@ namespace JacobHomanics.Timer.Extensions
 
         public GameObject TimerUI;
         public Timer timer;
-
-        public UnityEvent OnCast;
 
         void Update()
         {
@@ -57,8 +54,13 @@ namespace JacobHomanics.Timer.Extensions
 
         void OnDurationReached()
         {
-            Debug.Log(CastingSpell.action);
+            DoSpell();
             IsCasting = false;
+        }
+
+        void DoSpell()
+        {
+            Debug.Log(CastingSpell.action);
         }
 
         void OnEnable()

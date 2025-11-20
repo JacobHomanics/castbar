@@ -492,6 +492,7 @@ GameObject:
   - component: {fileID: 789992205}
   - component: {fileID: 789992204}
   - component: {fileID: 789992203}
+  - component: {fileID: 789992207}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -582,6 +583,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &789992207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789992202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2526bb32e3d4ed0aa5c5428c9c2edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerUI: {fileID: 789992206}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +843,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb45b8604296489394e12c2402b2b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnCast:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 789992207}
+        m_TargetAssemblyTypeName: castbarUI, castbar
+        m_MethodName: OnCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   spell1:
     sprite: {fileID: 21300000, guid: 5ba79002e19ad40f19e60cf174571646, type: 3}
     name: Fireball
@@ -841,14 +870,6 @@ MonoBehaviour:
     action: Throw Ice bolt!
   TimerUI: {fileID: 338091289}
   timer: {fileID: 1493033755}
-  OnCast:
-    m_PersistentCalls:
-      m_Calls: []
-  castingSpell:
-    sprite: {fileID: 0}
-    name: 
-    castTime: 0
-    action: 
 --- !u!4 &1988008060
 Transform:
   m_ObjectHideFlags: 0

@@ -1,12 +1,12 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 namespace JacobHomanics.Timer.Extensions
 {
     public class CastBar : MonoBehaviour
     {
+        public UnityEvent<Sprite, string> OnCast;
+
         [System.Serializable]
         public struct Spell
         {
@@ -86,12 +86,11 @@ namespace JacobHomanics.Timer.Extensions
 
         private void Cast(Sprite sprite, string name, float castTime)
         {
-            FindDeepChild(TimerUI.transform, "Image").GetComponent<Image>().sprite = sprite;
-            FindDeepChild(TimerUI.transform, "Spell Indicator Text").GetComponent<TMP_Text>().text = name;
             timer.Duration = castTime;
             timer.ElapsedTime = 0;
             timer.enabled = true;
             IsCasting = true;
+            OnCast?.Invoke(sprite, name);
         }
 
         private Transform FindDeepChild(Transform parent, string name)

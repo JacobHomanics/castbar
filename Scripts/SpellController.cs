@@ -52,11 +52,8 @@ public class SpellController : MonoBehaviour
 
     public void Cast(Spell spell)
     {
-        if (!castbar.IsCasting)
-        {
-            castbar.Cast(spell.sprite, spell.name, spell.castTime);
-            CastingSpell = spell;
-        }
+        castbar.Cast(spell.sprite, spell.name, spell.castTime);
+        CastingSpell = spell;
     }
 
 

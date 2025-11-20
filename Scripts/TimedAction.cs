@@ -5,14 +5,20 @@ namespace JacobHomanics.Timer.Extensions
 {
     public class TimedAction : MonoBehaviour
     {
-        public UnityEvent<Sprite, string> OnCast;
-
-        public GameObject TimerUI;
         public Timer timer;
+
+        public bool allowSelfInterruption = false;
+
+        public UnityEvent<Sprite, string> OnCast;
 
         public bool IsCasting
         {
             get => timer.enabled;
+        }
+
+        public bool CanStartCast
+        {
+            get => !IsCasting || allowSelfInterruption;
         }
 
         public UnityEvent OnTimeComplete;
@@ -30,7 +36,7 @@ namespace JacobHomanics.Timer.Extensions
 
         public void Cast(Sprite sprite, string name, float castTime)
         {
-            if (IsCasting)
+            if (!CanStartCast)
                 return;
 
             timer.Duration = castTime;

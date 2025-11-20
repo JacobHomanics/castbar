@@ -17,12 +17,6 @@ namespace JacobHomanics.Timer.Extensions
 
         public UnityEvent OnTimeComplete;
 
-        void OnDurationReached()
-        {
-            timer.enabled = false;
-            OnTimeComplete.Invoke();
-        }
-
 
         void OnEnable()
         {
@@ -32,12 +26,6 @@ namespace JacobHomanics.Timer.Extensions
         void OnDisable()
         {
             timer.OnDurationReached.RemoveListener(OnDurationReached);
-        }
-
-
-        public void CancelCast()
-        {
-            timer.enabled = false;
         }
 
         public void Cast(Sprite sprite, string name, float castTime)
@@ -50,6 +38,18 @@ namespace JacobHomanics.Timer.Extensions
             timer.enabled = true;
             OnCast?.Invoke(sprite, name);
         }
+
+        public void CancelCast()
+        {
+            timer.enabled = false;
+        }
+
+        void OnDurationReached()
+        {
+            timer.enabled = false;
+            OnTimeComplete.Invoke();
+        }
+
     }
 }
 

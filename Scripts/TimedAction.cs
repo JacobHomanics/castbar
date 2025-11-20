@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace JacobHomanics.Timer.Extensions
 {
-    public class CastBar : MonoBehaviour
+    public class TimedAction : MonoBehaviour
     {
         public UnityEvent<Sprite, string> OnCast;
 
@@ -19,7 +19,6 @@ namespace JacobHomanics.Timer.Extensions
 
         void OnDurationReached()
         {
-            // finish something
             timer.enabled = false;
             OnTimeComplete.Invoke();
         }

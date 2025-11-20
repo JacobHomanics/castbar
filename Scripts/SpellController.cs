@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SpellController : MonoBehaviour
 {
-    public CastBar castbar;
+    public TimedAction castbar;
 
     [System.Serializable]
     public struct Spell

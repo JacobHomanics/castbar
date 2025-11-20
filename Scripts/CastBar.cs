@@ -7,61 +7,23 @@ namespace JacobHomanics.Timer.Extensions
     {
         public UnityEvent<Sprite, string> OnCast;
 
-        [System.Serializable]
-        public struct Spell
-        {
-            public Sprite sprite;
-            public string name;
-            public float castTime;
-
-            public string action;
-        }
-
-        public Spell spell1;
-        public Spell spell2;
-
-
         public GameObject TimerUI;
         public Timer timer;
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-                Cast(spell1);
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-                Cast(spell2);
-
-            if (Input.GetKeyDown(KeyCode.Escape))
-                CancelCast();
-
-            TimerUI.SetActive(IsCasting);
-        }
-
         public bool IsCasting
         {
-            get; private set;
+            get => timer.enabled;
         }
 
-        public void Cast(Spell spell)
-        {
-            if (!IsCasting)
-            {
-                Cast(spell.sprite, spell.name, spell.castTime);
-                CastingSpell = spell;
-            }
-        }
+        public UnityEvent OnTimeComplete;
 
         void OnDurationReached()
         {
-            DoSpell();
-            IsCasting = false;
+            // finish something
+            timer.enabled = false;
+            OnTimeComplete.Invoke();
         }
 
-        void DoSpell()
-        {
-            Debug.Log(CastingSpell.action);
-        }
 
         void OnEnable()
         {
@@ -73,38 +35,21 @@ namespace JacobHomanics.Timer.Extensions
             timer.OnDurationReached.RemoveListener(OnDurationReached);
         }
 
-        public Spell CastingSpell
-        {
-            get;
-            private set;
-        }
 
         public void CancelCast()
         {
-            IsCasting = false;
+            timer.enabled = false;
         }
 
-        private void Cast(Sprite sprite, string name, float castTime)
+        public void Cast(Sprite sprite, string name, float castTime)
         {
+            if (IsCasting)
+                return;
+
             timer.Duration = castTime;
             timer.ElapsedTime = 0;
             timer.enabled = true;
-            IsCasting = true;
             OnCast?.Invoke(sprite, name);
-        }
-
-        private Transform FindDeepChild(Transform parent, string name)
-        {
-            foreach (Transform child in parent)
-            {
-                if (child.name == name)
-                    return child;
-
-                var result = FindDeepChild(child, name);
-                if (result != null)
-                    return result;
-            }
-            return null;
         }
     }
 }

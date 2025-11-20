@@ -1,3 +1,5 @@
+using JacobHomanics.Timer;
+using JacobHomanics.Timer.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -5,6 +7,13 @@ using UnityEngine.UI;
 public class castbarUI : MonoBehaviour
 {
     public Transform timerUI;
+    public Timer timer;
+
+    void Update()
+    {
+        timerUI.gameObject.SetActive(timer.enabled);
+    }
+
     public void OnCast(Sprite sprite, string name)
     {
         FindDeepChild(timerUI.transform, "Image").GetComponent<Image>().sprite = sprite;
